@@ -71,12 +71,16 @@ First line of institution2 address\\
 
 When we first started our research we focused on the
 decryption of neural activity in order to reconstruct spoken
-word to synthesized speech by decrypting EEG data with
-a deep learning model based on the paper ``An open-access EEG dataset for speech decoding: Exploring the role of articulation and coarticulation'' \cite{moreira2022open}. We hoped that this would have applications in patients with speaking disabilities. However,
+word to synthesized speech. We used the paper ``An open-access EEG dataset
+ for speech decoding: Exploring the role of articulation and coarticulation''
+ \cite{moreira2022open} as a reference for how to understand and work with EEG data. 
+However,
 seeing that the coursework has been in computer vision, we
-pivoted our vision to focus more on the decryption of fMRI
+pivoted our project to focus more on the decryption of fMRI
 scans in order to replicate a patients vision at the time of the
-scan. Seeing that it was published in 2024, the DREAM paper~\cite{xia2024dream} by Weihao Xia and colleagues will serve as a guideline for our work in the construction of our own deep learning model for the decryption of human vision from neuronal
+scan. Seeing that it was published in 2024, the DREAM paper~\cite{xia2024dream} 
+by Weihao Xia and colleagues will serve as a guideline for our work in the 
+construction of our own deep learning model for the decryption of human vision from neuronal
 activity.
 
 DREAM (Visual Decoding from REversing HumAn Visual SysteM) is an innovative approach designed to recon-
@@ -85,19 +89,19 @@ The system comprises two main components: Reverse-VAC, which recovers semantic
 information from fMRI signals, and R-PKM, which predicts color and depth. This biologically interpretable method surpasses existing
 techniques in reproducing images that maintain appearance, structure, and semantics of the originally visualized image.
 
-We also plan on leveraging techniques from the paper “Generic decoding of seen and imagined objects using hierarchical visual features” \cite{horikawa2017generic} which introduces a novel approach to object recognition in both human and machine vision, leveraging deep convolutional neural networks (CNN) to decode seen and imagined objects from fMRI patterns based on hierarchical visual features. Unlike traditional classification-based decoding, which is constrained by training examples, this method allows for the identification of arbitrary object categories by predicting visual features across different brain areas. The research utilized visual features from CNN, HMAX, GIST, and SIFT + BoF models which we plan on researching and implementing partially.
+We also plan on leveraging techniques from the paper “Generic decoding of seen and imagined objects using hierarchical visual features” \cite{horikawa2017generic} which introduces a novel approach to object recognition in both human and machine vision, leveraging deep convolutional neural networks (CNN) to decode seen objects from fMRI patterns based on hierarchical visual features. Unlike traditional classification-based decoding, which is constrained by training examples, this method allows for the identification of arbitrary object categories by predicting visual features across different brain areas. The research utilized visual features from CNN, HMAX, GIST, and SIFT + BoF models which we plan on researching and implementing partially.
 
 \section{Milestones}
 
 \begin{enumerate}
     \item Understand the biological and computational foundations behind DREAM, reviewing the literature on similar topics. 
-    \item Acquire and preprocess the Natural Scenes Dataset (NSD) or a comparable fMRI dataset for training and testing the DREAM models.
-    \item Develop and tra in models similar to Reverse-VAC and R-PKM to decode fMRI data, utilizing advanced learning techniques, with deliverables including trained models and performance metrics.
+    \item Acquire and preprocess the Natural Scenes Dataset (NSD) or a comparable fMRI dataset for training and testing our model.
+    \item Develop and train models similar to Reverse-VAC and R-PKM to decode fMRI data, utilizing advanced learning techniques, with deliverables including trained models and performance metrics.
     \item Implement a decoding algorithm to reconstruct images from fMRI data, merging outputs from Reverse-VAC and R-PKM, with the deliverable being a functional algorithm and a comparison interface.
     \item Test our model against a set of novel data, tuning the steps above to optimize performance and finalize the model.
 \end{enumerate}
 
-We plan on dividing tasks based on the individuals skillsets. Andrea and Andrew will be focusing on code and Camille will be focusing on data analytics and normalization. We will meet weekly in order to assign tasks and check in on progress, using a team-organization software to ensure accountability and pacing of the project.
+We plan on dividing tasks based on the individuals skillsets. Andrea and Andrew will be focusing on code and Camille will be focusing on data analytics and normalization. We will meet weekly in order to assign tasks and check in on progress, using a team-organization software to ensure accountability and maintain pacing of the project.
 
 %%%%%%%%% REFERENCES
 {\small
