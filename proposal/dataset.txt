@@ -1,0 +1,7 @@
+Natural Scenes Dataset
+
+link: https://natural-scenes-dataset.s3.amazonaws.com/index.html
+
+task: image generation from fMRI
+
+size: 70,000+ fMRI scans
