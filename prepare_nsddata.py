@@ -93,11 +93,16 @@ for idx in range(num_trials):
 print('len sig_train', len(sig_train)) #ADDED BY ANDREA.
 train_im_idx = list(sig_train.keys())
 
-for i, idx in train_im_idx: #ADDED BY DREW
+for i, idx in enumerate(train_im_idx): #ADDED BY DREW
     if idx > 7300:
         train_im_idx.pop(i)
 
 test_im_idx = list(sig_test.keys())
+
+for i, idx in enumerate(test_im_idx): #ADDED BY DREW
+    if idx > 7300:
+        test_im_idx.pop(i)
+        
 train_im_idx = range(6500) #ADDED BY ANDREA.
 test_im_idx = range(6500,7300) #ADDED BY ANDREA.
 
@@ -110,29 +115,29 @@ mask = nib.load(roi_dir+mask_filename).get_fdata()
 num_voxel = mask[mask>0].shape[0]
 
 fmri = np.zeros((num_trials, num_voxel)).astype(np.float32)
-for i in range(3): #EDITED BY ANDREA. range(3) INSTEAD OF range(37)
+for i in range(3): # EDITED BY ANDREA. range(3) INSTEAD OF range(37)
     beta_filename = "betas_session{0:02d}.nii.gz".format(i+1)
     beta_f = nib.load(betas_dir+beta_filename).get_fdata().astype(np.float32)
     fmri[i*750:(i+1)*750] = beta_f[mask>0].transpose()
     del beta_f
-    #print(i)
+    print(i)
     
 print("fMRI Data are loaded.")
 
 f_stim = h5py.File('nsddata_stimuli/stimuli/nsd/nsd_stimuli.hdf5', 'r')
-stim = f_stim['imgBrick'][::10,::10,::10] # EDITED BY ANDREA. [::10,::10,::10] INSTEAD OF [:] 
+stim = f_stim['imgBrick'][::10,::10,::10] # EDITED BY ANDREA. [::10,::10,::10] INSTEAD OF [:] | 1
 print('stim shape', stim.shape) # ADDED BY ANDREA | 2
 
 print("Stimuli are loaded.")
 
 num_train, num_test = len(train_im_idx), len(test_im_idx)
 vox_dim, im_dim, im_c = num_voxel, 425, 3
-num_train, num_test, im_dim,im_dim,im_c= 6500, 800, stim.shape[1], stim.shape[2], stim.shape[3] # ADDED BY ANDREA 
+num_train, num_test, im_dim,im_dim,im_c= 6500, 800, stim.shape[1], stim.shape[2], stim.shape[3] # ADDED BY ANDREA | 3
 fmri_array = np.zeros((num_train,vox_dim))
 stim_array = np.zeros((num_train,im_dim,im_dim,im_c))
 for i,idx in enumerate(train_im_idx): 
     stim_array[i] = stim[idx]
-    fmri_array[i] = fmri[[sorted(sig_test[idx])]].mean(0) 
+    fmri_array[i] = fmri[sorted(sig_test[idx])].mean(0) #EDITED BY ANDREA. fmri[i].mean(0) INSTEAD OF fmri[sorted(sig_test[idx])].mean(0)
     #print(i)
 
 np.save('processed_data/subj{:02d}/nsd_train_fmriavg_nsdgeneral_sub{}.npy'.format(sub,sub),fmri_array )
@@ -144,7 +149,7 @@ fmri_array = np.zeros((num_test,vox_dim))
 stim_array = np.zeros((num_test,im_dim,im_dim,im_c))
 for i,idx in enumerate(test_im_idx): 
     stim_array[i] = stim[idx]
-    fmri_array[i] = fmri[[sorted(sig_test[idx])]].mean(0) 
+    fmri_array[i] = fmri[sorted(sig_test[idx])].mean(0) #EDITED BY ANDREA. frmi[i].mean(0) INSTEAD OF fmri[sorted(sig_test[idx])].mean(0).
     #print(i)
 
 np.save('processed_data/subj{:02d}/nsd_test_fmriavg_nsdgeneral_sub{}.npy'.format(sub,sub),fmri_array )
@@ -156,13 +161,13 @@ annots_cur = np.load('annots/COCO_73k_annots_curated.npy')
 
 captions_array = np.empty((num_train,5),dtype=annots_cur.dtype)
 for i,idx in enumerate(train_im_idx): 
-    captions_array[i,:] = annots_cur[idx,:] 
+    captions_array[i,:] = annots_cur[idx,:]
     #print(i)
 np.save('processed_data/subj{:02d}/nsd_train_cap_sub{}.npy'.format(sub,sub),captions_array )
     
 captions_array = np.empty((num_test,5),dtype=annots_cur.dtype)
 for i,idx in enumerate(train_im_idx):  
-    captions_array[i,:] = annots_cur[idx,:] 
+    captions_array[i,:] = annots_cur[idx,:]
     #print(i)
 np.save('processed_data/subj{:02d}/nsd_test_cap_sub{}.npy'.format(sub,sub),captions_array )
 
