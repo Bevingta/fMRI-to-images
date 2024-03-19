@@ -6,8 +6,10 @@
 ### Contributions
 **Andrea**
 - Dataset access (AWS Keys and download)
+
 **Drew**
 - Proposal writeup
 - Database proposal
+
 **Camille**
 - CLIP research
