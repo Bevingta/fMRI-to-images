@@ -8,3 +8,4 @@
 *.gz
 *.brf
 testing.py
+credentials.json
