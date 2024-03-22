@@ -48,6 +48,20 @@ def get_folder_contents(folder_id, creds):
 
     return items
 
+def access_google_drive_file(file_id, credentials):
+    service = build('drive', 'v3', credentials=credentials)
+    
+    # Request the file content
+    request = service.files().get_media(fileId=file_id)
+    
+    # Execute the request and return the content
+    return request.execute()
+
+def open_file(file_id, creds):
+    file_content = access_google_drive_file(file_id, creds)
+    print(file_content)
+    return file_content
+
 def main():
     # Authenticate user
     creds = authenticate()
@@ -68,6 +82,9 @@ def main():
         #cd command using <id> as navigation
         if command[:2] == 'cd':
             file_metadata = get_file_metadata(command[3:], creds)
+
+            if len(get_folder_contents(file_metadata['id'], creds)) == 0:
+                file_content = open_file(file_metadata['id'], creds)
 
         #ls command to list files in the folder
         elif command == 'ls':
