@@ -1,0 +1,8 @@
+Model 1: brain-diffuser
+Link (paper): https://arxiv.org/abs/2303.05334
+
+Model 2: VDVAE
+Link (paper): https://arxiv.org/abs/2011.10650
+
+Model 3: CLIP
+Link (paper): https://arxiv.org/abs/2103.00020
