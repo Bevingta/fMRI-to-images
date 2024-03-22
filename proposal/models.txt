@@ -1,8 +1,11 @@
 Model 1: brain-diffuser
 Link (paper): https://arxiv.org/abs/2303.05334
+Link (github): https://github.com/ozcelikfu/brain-diffuser
 
 Model 2: VDVAE
 Link (paper): https://arxiv.org/abs/2011.10650
+Link (github): https://github.com/openai/vdvae
 
 Model 3: CLIP
 Link (paper): https://arxiv.org/abs/2103.00020
+Link (github): https://github.com/openai/CLIP
