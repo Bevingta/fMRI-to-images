@@ -6,6 +6,7 @@
 ### Contributions
 **Andrea**
 - Dataset access (AWS Keys and download)
+- Adapted source code to the needs of our project
 
 **Drew**
 - Proposal writeup
