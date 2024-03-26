@@ -35,6 +35,20 @@ def get_file_metadata(file_id, creds):
     file = service.files().get(fileId=file_id).execute()
     return file
 
+def get_file_content(file_id, drive_service):
+    # Request file content
+    request = drive_service.files().get_media(fileId=file_id)
+    file_content = io.BytesIO()
+    downloader = MediaIoBaseDownload(file_content, request)
+    done = False
+    while not done:
+        status, done = downloader.next_chunk()
+
+    # Reset the file pointer to the beginning of the buffer
+    file_content.seek(0)
+
+    return file_content.getvalue()
+
 def get_folder_contents(folder_id, creds):
     service = build('drive', 'v3', credentials=creds)
     results = service.files().list(
@@ -62,9 +76,14 @@ def open_file(file_id, creds):
     print(file_content)
     return file_content
 
+#def open_mat(file_id, creds):
+    #None
+
 def main():
     # Authenticate user
     creds = authenticate()
+
+    drive_service = build('drive', 'v3', credentials=creds)
 
     # File ID of the shared file
     #file_id = input("Enter the file ID: ")
@@ -95,6 +114,13 @@ def main():
 
         else:
             print("Invalid command. Type 'ls' to list files or 'cd <folder_id>' to navigate.")
+
+    #stim_order_f = 'nsddata/experiments/nsd/nsd_expdesign.mat'
+    #roi_dir = 'nsddata/ppdata/subj{:02d}/func1pt8mm/roi/'.format(sub)
+    #betas_dir = 'nsddata_betas/ppdata/subj{:02d}/func1pt8mm/betas_fithrf_GLMdenoise_RR/'.format(sub)
+    #mask_filename = 'nsdgeneral.nii.gz'
+    #beta_filename = 'betas_fithrf_GLMdenoise_RR'
+    #f_stim = h5py.File('nsddata_stimuli/stimuli/nsd/nsd_stimuli.hdf5', 'r')
 
 if __name__ == '__main__':
     main()

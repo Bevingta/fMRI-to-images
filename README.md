@@ -6,11 +6,13 @@
 ### Contributions
 **Andrea**
 - Dataset access (AWS Keys and download)
-- Adapted source code to the needs of our project
+- Changed the parameters of prepare_nsddata.py to fit onto a computer's RAM
 
 **Drew**
 - Proposal writeup
 - Database proposal
+- Model proposal
+- Created a script to access the files through the Google Drive API
 
 **Camille**
 - CLIP research
