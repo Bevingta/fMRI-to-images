@@ -1,9 +1,11 @@
 import os.path
 
+import io
 from google.oauth2.credentials import Credentials
 from google.auth.transport.requests import Request
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
+from googleapiclient.http import MediaIoBaseDownload
 
 # Define the scopes for access
 SCOPES = ['https://www.googleapis.com/auth/drive']
@@ -76,6 +78,46 @@ def open_file(file_id, creds):
     print(file_content)
     return file_content
 
+def get_google_drive_service():
+    """Get an authorized Google Drive API service instance."""
+    creds = None
+    # The file token.json stores the user's access and refresh tokens
+    # It's created automatically when the authorization flow completes for the first time
+    if os.path.exists('token.json'):
+        creds = Credentials.from_authorized_user_file('token.json')
+    # If there are no (valid) credentials available, let the user log in
+    if not creds or not creds.valid:
+        if creds and creds.expired and creds.refresh_token:
+            creds.refresh(Request())
+        else:
+            flow = InstalledAppFlow.from_client_secrets_file(
+                'credentials.json', SCOPES)
+            creds = flow.run_local_server(port=0)
+        # Save the credentials for the next run
+        with open('token.json', 'w') as token:
+            token.write(creds.to_json())
+
+    # Build the Google Drive API service
+    service = build('drive', 'v3', credentials=creds)
+    return service
+
+def read_file_from_google_drive(file_id):
+    """Read a file from Google Drive without downloading it locally."""
+    drive_service = get_google_drive_service()
+    file_data = drive_service.files().get(fileId=file_id).execute()
+    file_name = file_data['name']
+    file_content = io.BytesIO()
+
+    request = drive_service.files().get_media(fileId=file_id)
+    downloader = MediaIoBaseDownload(file_content, request)
+    done = False
+    while done is False:
+        _, done = downloader.next_chunk()
+
+    # Return the file content
+    return file_content.getvalue()
+
+
 #def open_mat(file_id, creds):
     #None
 
@@ -92,6 +134,12 @@ def main():
     commanding = True
 
     file_metadata = get_file_metadata(folder_id, creds)
+
+    #klf8 = read_file_from_google_drive('1azih3fcPoZs-g7FSudWCLqzE29A30DF9')
+    #optiumusvae = read_file_from_google_drive('10m0uqdUgCS4zFoH-fl65DUIzRyDU46mE')
+    vdfourflow = read_file_from_google_drive('1eZNHIIysR-eQQg6keYwYEuX5iLBPCSf-')
+
+    return vdfourflow
     
     while commanding:
         print()
@@ -123,4 +171,4 @@ def main():
     #f_stim = h5py.File('nsddata_stimuli/stimuli/nsd/nsd_stimuli.hdf5', 'r')
 
 if __name__ == '__main__':
-    main()
+    klf8, optiumsvae, vdfourflow = main()
