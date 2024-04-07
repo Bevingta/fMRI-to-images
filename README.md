@@ -53,9 +53,9 @@ to
   [imagenet64-iter-1600000-opt.th](https://openaipublic.blob.core.windows.net/very-deep-vaes-assets/vdvae-assets-2/imagenet64-iter-1600000-opt.th)  
   Place the files in the `vdvae/model/` folder.
 
-- Seventh step. Extract VDVAE latent features of stimuli images for any subject 'x' using python scripts/vdvae_extract_features.py -sub x;
-- Eighth step. Train regression models from fMRI to VDVAE latent features and save test predictions using python scripts/vdvae_regression.py -sub x;
-- Ninth step. Reconstruct images from predicted test features using python scripts/vdvae_reconstruct_images.py -sub x;
+- Seventh step. Extract VDVAE latent features of stimuli images for any subject 'x' using `python scripts/vdvae_extract_features.py -sub x`;
+- Eighth step. Train regression models from fMRI to VDVAE latent features and save test predictions using `python scripts/vdvae_regression.py -sub x`;
+- Ninth step. Reconstruct images from predicted test features using `python scripts/vdvae_reconstruct_images.py -sub x`;
   
 ### Contributions
 **Andrea**
