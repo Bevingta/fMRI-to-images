@@ -5,8 +5,8 @@
 ---
 ### Instructions
 The instructions are mainly reported from the Brain-diffuser project, rewritten including what we did, the complications found, and the relative solutions that consented us to proceed.
-- First step: Copy the Brain-diffuser repository, in order to have the folders appropriately ordered;
-- Second step: Obtain access to NSD data. In order to do so, it is needed to:
+- First step. Copy the Brain-diffuser repository, in order to have the folders appropriately ordered;
+- Second step. Obtain access to NSD data. In order to do so, it is needed to:
       - Watch the useful tutorials [AWS CLI Tutorial](https://www.youtube.com/watch?v=Rp-A84oh4G8&t=39s) and [AWS CLI for Beginners](https://www.youtube.com/watch?v=9oYd5KQM8AQ&t=315s);
       - Create a Root User AWS account;
       - Go in the IAM console and create an IAM user with Administratoraccess permission;
@@ -14,10 +14,26 @@ The instructions are mainly reported from the Brain-diffuser project, rewritten 
       - Create access keys;
       - Run `aws configure` on the terminal or anaconda powershell prompt;
       - Provide the access keys you just created.
-  - Third step: Download the NSD Data fromNSD AWS Server:
+- Third step. Download the NSD Data fromNSD AWS Server:
     ```python
     cd data
     python download_nsddata.py
+- Fourth step. Download "COCO_73k_annots_curated.npy" file from [HuggingFace NSD](https://huggingface.co/datasets/pscotti/naturalscenesdataset/tree/main) and place it in the 'annots' folder;
+- Fifth step. Prepare NSD data for the Reconstruction Task:
+        ```python
+        cd data
+        python prepare_nsddata.py -sub 1
+        python prepare_nsddata.py -sub 2
+        python prepare_nsddata.py -sub 5
+        python prepare_nsddata.py -sub 7
+  **Note:** this may cause problems due to the large dimension of the data. If you obtain an error related to the impossibility of store large arrays in the RAM, you can open the `prepare_nsddata.py` file and change the code line
+  ```python
+  stim = f_stim['imgBrick']
+to
+  ```python
+  stim = f_stim['imgBrick'][:,::2,::2]
+- Sixth step.
+  
 ### Contributions
 **Andrea**
 - I participated to all the group meetings, proposing and discussing ideas, first on which model to choose and then on how to solve the arising problems;
