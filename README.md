@@ -25,6 +25,7 @@ The instructions are mainly reported from the Brain-diffuser project, rewritten 
     python download_nsddata.py
 - Fourth step. Download "COCO_73k_annots_curated.npy" file from [HuggingFace NSD](https://huggingface.co/datasets/pscotti/naturalscenesdataset/tree/main) and place it in the `annots` folder;
 - Fifth step. Prepare NSD data for the Reconstruction Task:
+  
         ```python
         cd data
         python prepare_nsddata.py -sub 1
