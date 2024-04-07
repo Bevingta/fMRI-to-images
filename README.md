@@ -33,6 +33,7 @@ The instructions are mainly reported from the Brain-diffuser project, rewritten 
     python prepare_nsddata.py -sub 7
   
 **Note:** this may cause problems due to the large dimension of the data. If you obtain an error related to the impossibility of store large arrays in the RAM, you can open the `prepare_nsddata.py` file and change the code line  
+
     ```python
     stim = f_stim['imgBrick']
     
