@@ -1,7 +1,7 @@
 # Decrypting the Brain: Extracting Visual Information from fMRI Data
 ---
 ### Description
-
+- This study was realized as the final project for the course "CSCI 3397/PSYC 3317: Biomedical Image Analysis" at Boston College. Its scope is to reconstruct images starting from fmri data, reversing in this way the process that happens in the human brain as a response to visual stimuli. The main reference for this project was the [Brain-diffuser](https://github.com/ozcelikfu/brain-diffuser) model, that we aim to reproduce and possibly modify.
 ---
 ### Contributions
 **Andrea**
@@ -14,6 +14,7 @@
 - I gradually solved the problems arising from following the instructions provided by the authors of "Brain-diffuser". First, the large amount of data made running the "Brain-diffuser"
   code unfeasible, as it was creating arrays that were too big to be stored in the RAM. This was solved by downsampling the data about images, keeping all the images but fewer pixels.
   Then, in order to extract the features in the way suggested by the authors and upload the corresponding files in the shared Google Drive, I found it was necessary to install pytorch with CUDA support.
+- I wrote the "Description" and "References" sections of the ReadMe;
 
 **Drew**
 - Proposal writeup
@@ -23,3 +24,11 @@
 
 **Camille**
 - CLIP research
+
+---
+### References
+- The paper from which we obtained the information on the model was ["Brain-Diffuser: Natural scene reconstruction from fMRI signals using generative latent diffusion"](https://arxiv.org/abs/2303.05334), by Furkan Ozcelik and Rufin VanRullen
+- Our work was initially inspired by a related project, described in [DREAM: Visual Decoding from Reversing Human Visual System](https://arxiv.org/pdf/2310.02265.pdf), by Weihao Xia,  Raoul de Charette,  Cengiz Öztireli, and  Jing-Hao Xue1.
+- Useful tutorials for how to download data from AWS are [AWS CLI Tutorial](https://www.youtube.com/watch?v=Rp-A84oh4G8&t=39s) by 
+Stephane Maarek and [AWS CLI for Beginners](https://www.youtube.com/watch?v=9oYd5KQM8AQ&t=315s) by BrainTrust Digital.
+- Dataset used in the studies are obtained from [Natural Scenes Dataset](https://naturalscenesdataset.org/)
