@@ -35,12 +35,12 @@ The instructions are mainly reported from the Brain-diffuser project, rewritten 
   
 **Note:** this may cause problems due to the large dimension of the data. If you obtain an error related to the impossibility of store large arrays in the RAM, you can open the `prepare_nsddata.py` file and change the code line  
   ```python
-  stim = f_stim['imgBrick']
-    
-to
+  stim = f_stim['imgBrick']  
+
+to  
 
   ```python
-  stim = f_stim['imgBrick'][:,::2,::2]
+  stim = f_stim['imgBrick'][:,::2,::2]  
 
 **Obtaining and implementing the model**
         
