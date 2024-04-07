@@ -5,6 +5,9 @@
 ---
 ### Instructions
 The instructions are mainly reported from the Brain-diffuser project, rewritten including what we did, the complications found, and the relative solutions that consented us to proceed.
+
+**Obtaining and processing the data**
+
 - First step. Copy the Brain-diffuser repository, in order to have the folders appropriately ordered;
 - Second step. Obtain access to NSD data. In order to do so, it is needed to:
       - Watch the useful tutorials [AWS CLI Tutorial](https://www.youtube.com/watch?v=Rp-A84oh4G8&t=39s) and [AWS CLI for Beginners](https://www.youtube.com/watch?v=9oYd5KQM8AQ&t=315s);
@@ -18,7 +21,7 @@ The instructions are mainly reported from the Brain-diffuser project, rewritten 
     ```python
     cd data
     python download_nsddata.py
-- Fourth step. Download "COCO_73k_annots_curated.npy" file from [HuggingFace NSD](https://huggingface.co/datasets/pscotti/naturalscenesdataset/tree/main) and place it in the 'annots' folder;
+- Fourth step. Download "COCO_73k_annots_curated.npy" file from [HuggingFace NSD](https://huggingface.co/datasets/pscotti/naturalscenesdataset/tree/main) and place it in the `annots` folder;
 - Fifth step. Prepare NSD data for the Reconstruction Task:
         ```python
         cd data
@@ -26,13 +29,26 @@ The instructions are mainly reported from the Brain-diffuser project, rewritten 
         python prepare_nsddata.py -sub 2
         python prepare_nsddata.py -sub 5
         python prepare_nsddata.py -sub 7
-  **Note:** this may cause problems due to the large dimension of the data. If you obtain an error related to the impossibility of store large arrays in the RAM, you can open the `prepare_nsddata.py` file and change the code line
+  
+**Note:** this may cause problems due to the large dimension of the data. If you obtain an error related to the impossibility of store large arrays in the RAM, you can open the `prepare_nsddata.py` file and change the code line
         ```python
         stim = f_stim['imgBrick']
 to
         ```python
         stim = f_stim['imgBrick'][:,::2,::2]
-- Sixth step.
+
+**Obtaining and implementing the model**
+        
+- Sixth step. Download pretrained VDVAE model files from the following links:
+  [imagenet64-iter-1600000-log.jsonl](https://openaipublic.blob.core.windows.net/very-deep-vaes-assets/vdvae-assets-2/imagenet64-iter-1600000-log.jsonl)
+  [imagenet64-iter-1600000-model.th](https://openaipublic.blob.core.windows.net/very-deep-vaes-assets/vdvae-assets-2/imagenet64-iter-1600000-model.th)
+  [imagenet64-iter-1600000-model-ema.th](https://openaipublic.blob.core.windows.net/very-deep-vaes-assets/vdvae-assets-2/imagenet64-iter-1600000-model-ema.th)
+  [imagenet64-iter-1600000-opt.th](https://openaipublic.blob.core.windows.net/very-deep-vaes-assets/vdvae-assets-2/imagenet64-iter-1600000-opt.th)
+  Place the files in the `vdvae/model/` folder.
+
+- Seventh step. Extract VDVAE latent features of stimuli images for any subject 'x' using python scripts/vdvae_extract_features.py -sub x;
+- Eighth step. Train regression models from fMRI to VDVAE latent features and save test predictions using python scripts/vdvae_regression.py -sub x;
+- Ninth step. Reconstruct images from predicted test features using python scripts/vdvae_reconstruct_images.py -sub x;
   
 ### Contributions
 **Andrea**
