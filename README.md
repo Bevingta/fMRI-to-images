@@ -3,6 +3,9 @@
 ### Description
 - This study was realized as the final project for the course "CSCI 3397/PSYC 3317: Biomedical Image Analysis" at Boston College. Its scope is to reconstruct images starting from fmri data, reversing in this way the process that happens in the human brain as a response to visual stimuli. The main reference for this project was the [Brain-diffuser](https://github.com/ozcelikfu/brain-diffuser) model, that we aim to reproduce and possibly modify.
 ---
+### Instructions
+The instructions are mainly reported from the Brain-diffuser project, rewritten including what we did, the complications found, and the relative solutions that consented us to proceed.
+- First step: 
 ### Contributions
 **Andrea**
 - I participated to all the group meetings, proposing and discussing ideas, first on which model to choose and then on how to solve the arising problems;
