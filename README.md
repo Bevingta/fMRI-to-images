@@ -10,6 +10,7 @@ The instructions are mainly reported from the Brain-diffuser project, rewritten 
 
 - First step. Copy the Brain-diffuser repository, in order to have the folders appropriately ordered;
 - Second step. Obtain access to NSD data. In order to do so, it is needed to:
+  
       - Watch the useful tutorials [AWS CLI Tutorial](https://www.youtube.com/watch?v=Rp-A84oh4G8&t=39s) and [AWS CLI for Beginners](https://www.youtube.com/watch?v=9oYd5KQM8AQ&t=315s);
       - Create a Root User AWS account;
       - Go in the IAM console and create an IAM user with Administratoraccess permission;
@@ -17,6 +18,7 @@ The instructions are mainly reported from the Brain-diffuser project, rewritten 
       - Create access keys;
       - Run `aws configure` on the terminal or anaconda powershell prompt;
       - Provide the access keys you just created.
+  
 - Third step. Download the NSD Data fromNSD AWS Server:
     ```python
     cd data
@@ -61,7 +63,7 @@ to
 - I gradually solved the problems arising from following the instructions provided by the authors of "Brain-diffuser". First, the large amount of data made running the "Brain-diffuser"
   code unfeasible, as it was creating arrays that were too big to be stored in the RAM. This was solved by downsampling the data about images, keeping all the images but fewer pixels.
   Then, in order to extract the features in the way suggested by the authors and upload the corresponding files in the shared Google Drive, I found it was necessary to install pytorch with CUDA support.
-- I wrote the "Description" and "References" sections of the ReadMe;
+- I wrote the "Description", "References" and "Instructions" sections of the ReadMe;
 
 **Drew**
 - Proposal writeup
