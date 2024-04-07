@@ -20,12 +20,13 @@ The instructions are mainly reported from the Brain-diffuser project, rewritten 
   - Provide the access keys you just created.
   
 - Third step. Download the NSD Data fromNSD AWS Server:
-    ```python
+    
     cd data
     python download_nsddata.py
+  
 - Fourth step. Download "COCO_73k_annots_curated.npy" file from [HuggingFace NSD](https://huggingface.co/datasets/pscotti/naturalscenesdataset/tree/main) and place it in the `annots` folder;
 - Fifth step. Prepare NSD data for the Reconstruction Task:
-    ```python
+    
     cd data
     python prepare_nsddata.py -sub 1
     python prepare_nsddata.py -sub 2
@@ -34,12 +35,10 @@ The instructions are mainly reported from the Brain-diffuser project, rewritten 
   
 **Note:** this may cause problems due to the large dimension of the data. If you obtain an error related to the impossibility of store large arrays in the RAM, you can open the `prepare_nsddata.py` file and change the code line  
 
-    ```python
     stim = f_stim['imgBrick']
     
 to  
 
-    ```python
     stim = f_stim['imgBrick'][:,::2,::2]
 
 **Obtaining and implementing the model**
