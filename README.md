@@ -82,7 +82,7 @@ to
         best_mask = mask
     train_fmri = train_fmri[:,best_mask]
     test_fmri = test_fmri[:,best_mask]
-    reg.fit(train_fmri)
+    reg.fit(train_fmri, train_latents)
     ```
 
     This code is used to iteratively select a number (in this case 10500) of features at random, remove them from the training data, and fit the Ridge regression on the so obtained reduced data, obtaining the $R^2$ score. At the end of the iterations, the group of features whose removal lead to the best score is permanently removed, and the model is fitted on the remaining features. This is useful to solve the problems with memory allocation, at the cost of a reduced accuracy.
