@@ -53,9 +53,40 @@ to
   [imagenet64-iter-1600000-opt.th](https://openaipublic.blob.core.windows.net/very-deep-vaes-assets/vdvae-assets-2/imagenet64-iter-1600000-opt.th)  
   Place the files in the `vdvae/model/` folder.
 
-- Seventh step. Extract VDVAE latent features of stimuli images for any subject 'x' using `python scripts/vdvae_extract_features.py -sub x`;
-- Eighth step. Train regression models from fMRI to VDVAE latent features and save test predictions using `python scripts/vdvae_regression.py -sub x`;
-- Ninth step. Reconstruct images from predicted test features using `python scripts/vdvae_reconstruct_images.py -sub x`;
+- Seventh step. Extract VDVAE latent features of stimuli images for any subject 'x' using `python scripts/vdvae_extract_features.py -sub x`. In order to make this work, the presence of an NVIDIA GPU that is CUDA-compatible is necessary. Moreover, one needs to install pytorch with CUDA support, referring to the instructions in [Pytorch Website](https://pytorch.org/get-started/locally/).
+- Eighth step. Train regression models from fMRI to VDVAE latent features and save test predictions using `python scripts/vdvae_regression.py -sub x`. Once again, this may cause errors related to the large dimensions of the data. It is possible to overcome this problem replacing the following line of code  
+  
+  ```python
+  reg.fit(reduced_train_fmri, train_latents)
+  ```
+  
+  with this block of code
+  
+    ```python
+    print('train_fmri', train_fmri.shape, train_fmri[0])
+    print('train_latents', train_latents.shape, train_latents[0])
+    best_score = 0
+    best_mask = np.zeros(train_fmri.shape[1], dtype=bool)
+    train_fmri = train_fmri.astype(np.float32)
+    np.random.seed(42)
+    for _ in range(2):
+      print(_)
+      features_to_remove = np.random.choice(train_fmri.shape[1], 10500, replace=False)
+      mask = np.ones(train_fmri.shape[1], dtype=bool)
+      mask[features_to_remove] = 0
+      reduced_train_fmri = train_fmri[:,mask]
+      reg.fit(reduced_train_fmri, train_latents)
+      score = reg.score(reduced_train_fmri, train_latents)
+      if score > best_score:
+        best_score = score
+        best_mask = mask
+    train_fmri = train_fmri[:,best_mask]
+    test_fmri = test_fmri[:,best_mask]
+    reg.fit(train_fmri)
+    ```
+
+    This code is used to iteratively select a number (in this case 10500) of features at random, remove them from the training data, and fit the Ridge regression on the so obtained reduced data, obtaining the $R^2$ score. At the end of the iterations, the group of features whose removal lead to the best score is permanently removed, and the model is fitted on the remaining features. This is useful to solve the problems with memory allocation, at the cost of a reduced accuracy.
+- Ninth step. Reconstruct images from predicted test features using `python scripts/vdvae_reconstruct_images.py -sub x`.
   
 ### Contributions
 **Andrea**
@@ -67,7 +98,7 @@ to
   Notebook and I tried to upload the data on DropBox in order to provide the other group members with further solutions to obtain the data;
 - I gradually solved the problems arising from following the instructions provided by the authors of "Brain-diffuser". First, the large amount of data made running the "Brain-diffuser"
   code unfeasible, as it was creating arrays that were too big to be stored in the RAM. This was solved by downsampling the data about images, keeping all the images but fewer pixels.
-  Then, in order to extract the features in the way suggested by the authors and upload the corresponding files in the shared Google Drive, I found it was necessary to install pytorch with CUDA support.
+  Then, in order to extract the features in the way suggested by the authors and upload the corresponding files in the shared Google Drive, I found it was necessary to install pytorch with CUDA support. Subsequently, I found a solution to the errors arising while training the regression model. I needed to reduce the number of features in order for the code to run, and I tried to achieve a trade off between a logic choice of features and efficiency, as it can be seen from the block of code described in the eighth step above. I obtained the reconstructed images.
 - I wrote the "Description", "References" and "Instructions" sections of the ReadMe;
 
 **Drew**
