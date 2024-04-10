@@ -1,0 +1,11 @@
+Over the last few weeks we have been working with Brain-Diffiser. This was a model created by Furkan Ozcelik and Rufin VanRullen
+and it makes use of the existing VDVAE and Versatile Diffusion models. For our experiments we have been attempting to make the 
+code runnable on a personal computer. When it was created, it was made more so for computers with access to large ammounts of 
+RAM and storage. We started by experimenting with downsampling the input data size (pulled from the NSD Dataset) 
+which worked and then we moved onto the VDVAE model where we either 
+had to downsample data or switch to a SGD approach. We decidede to do both and compare the two. 
+WE were able to get both to work and are currently working on comparing the outputted images. In order to get a real 
+idea of what they look like we need to run the Versatile Diffusion model which we have not yet reached but are working to. 
+We have intermediary images and are able to quickly check their accuracy using a provided versatile diffusion demo program.
+Overall, we started with fMRI scans as input coupled with caption data. This was transformed into a trained model
+whcih was then used for running the VDVAE model which outputted the first of the reconstructed images.
