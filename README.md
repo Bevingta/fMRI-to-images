@@ -102,7 +102,7 @@ to
 - I wrote the "Description", "References" and "Instructions" sections of the ReadMe;
 - I made a scheme that represents in a simpliefied way the functioning of the model, the dimensions of the data, and the code scripts related to the various steps of the model;
 - I obtained the first images reconstructed with Versatile Diffusion, noting that the main problems were due to the scarcity of memory remained in my computer;
-- I tried to reduce the batch size used and to rerun the code files to obtain further results;
+- I tried to reduce the batch size from 30 to 3 and the number of latents from 31 to 10 trying to see whether we could obtain good results with a smaller memory usage;
 
 **Drew**
 - Proposal writeup
