@@ -86,7 +86,7 @@ to
     ```
 
     This code is used to iteratively select a number (in this case 10500) of features at random, remove them from the training data, and fit the Ridge regression on the so obtained reduced data, obtaining the $R^2$ score. At the end of the iterations, the group of features whose removal lead to the best score is permanently removed, and the model is fitted on the remaining features. This is useful to solve the problems with memory allocation, at the cost of a reduced accuracy.
-- Ninth step. Reconstruct images from predicted test features using `python scripts/vdvae_reconstruct_images.py -sub x`.
+- Ninth step. Reconstruct images from predicted test features using `python scripts/vdvae_reconstruct_images.py -sub x`. Depending on the number of GPU devices of your machine you may want to edit this last code script, for example changing all the `cude(1)` calls to `cuda(0)`.
   
 ### Contributions
 **Andrea**
@@ -100,6 +100,9 @@ to
   code unfeasible, as it was creating arrays that were too big to be stored in the RAM. This was solved by downsampling the data about images, keeping all the images but fewer pixels.
   Then, in order to extract the features in the way suggested by the authors and upload the corresponding files in the shared Google Drive, I found it was necessary to install pytorch with CUDA support. Subsequently, I found a solution to the errors arising while training the regression model. I needed to reduce the number of features in order for the code to run, and I tried to achieve a trade off between a logic choice of features and efficiency, as it can be seen from the block of code described in the eighth step above. I obtained the reconstructed images.
 - I wrote the "Description", "References" and "Instructions" sections of the ReadMe;
+- I made a scheme that represents in a simpliefied way the functioning of the model, the dimensions of the data, and the code scripts related to the various steps of the model;
+- I obtained the first images reconstructed with Versatile Diffusion, noting that the main problems were due to the scarcity of memory remained in my computer;
+- I tried to reduce the batch size used and to rerun the code files to obtain further results;
 
 **Drew**
 - Proposal writeup
