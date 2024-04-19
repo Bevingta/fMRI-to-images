@@ -91,11 +91,11 @@ to
 **Versatile Diffusion: Obtaining and implementing the model**
 
 - Download pretrained Versatile Diffusion model "vd-four-flow-v1-0-fp16-deprecated.pth", "kl-f8.pth" and "optimus-vae.pth" from [HuggingFace](https://huggingface.co/shi-labs/versatile-diffusion/tree/main/pretrained_pth) and put them in `versatile_diffusion/pretrained/` folder
-- Extract CLIP-Text features of captions for any subject 'x' using `python scripts/cliptext_extract_features.py` -sub x
-- Extract CLIP-Vision features of stimuli images for any subject 'x' using `python scripts/clipvision_extract_features.py` -sub x
-- Train regression models from fMRI to CLIP-Text features and save test predictions using `python scripts/cliptext_regression.py` -sub x
-- Train regression models from fMRI to CLIP-Vision features and save test predictions using `python scripts/clipvision_regression.py` -sub x
-- Reconstruct images from predicted test features using `python scripts/versatilediffusion_reconstruct_images.py` -sub x. Depending on the number of GPU devices of your machine you may want to edit this last code script, for example changing all the `cude(1)` calls to `cuda(0)`.
+- Extract CLIP-Text features of captions for any subject 'x' using `python scripts/cliptext_extract_features.py -sub x`
+- Extract CLIP-Vision features of stimuli images for any subject 'x' using `python scripts/clipvision_extract_features.py -sub x`
+- Train regression models from fMRI to CLIP-Text features and save test predictions using `python scripts/cliptext_regression.py -sub x`
+- Train regression models from fMRI to CLIP-Vision features and save test predictions using `python scripts/clipvision_regression.py -sub x`
+- Reconstruct images from predicted test features using `python scripts/versatilediffusion_reconstruct_images.py -sub x`. Depending on the number of GPU devices of your machine you may want to edit this last code script, for example changing all the `cude(1)` calls to `cuda(0)`.
   
 ### Contributions
 **Andrea**
