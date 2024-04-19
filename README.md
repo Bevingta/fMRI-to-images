@@ -44,7 +44,7 @@ to
   stim = f_stim['imgBrick'][:,::2,::2]
   ```
 
-**Obtaining and implementing the model**
+**VDVAE: Obtaining and implementing the model**
         
 - Sixth step. Download pretrained VDVAE model files from the following links:  
   [imagenet64-iter-1600000-log.jsonl](https://openaipublic.blob.core.windows.net/very-deep-vaes-assets/vdvae-assets-2/imagenet64-iter-1600000-log.jsonl)   
@@ -86,7 +86,16 @@ to
     ```
 
     This code is used to iteratively select a number (in this case 10500) of features at random, remove them from the training data, and fit the Ridge regression on the so obtained reduced data, obtaining the $R^2$ score. At the end of the iterations, the group of features whose removal lead to the best score is permanently removed, and the model is fitted on the remaining features. This is useful to solve the problems with memory allocation, at the cost of a reduced accuracy.
-- Ninth step. Reconstruct images from predicted test features using `python scripts/vdvae_reconstruct_images.py -sub x`. Depending on the number of GPU devices of your machine you may want to edit this last code script, for example changing all the `cude(1)` calls to `cuda(0)`.
+- Ninth step. Reconstruct images from predicted test features using `python scripts/vdvae_reconstruct_images.py -sub x`.
+
+**Versatile Diffusion: Obtaining and implementing the model**
+
+- Download pretrained Versatile Diffusion model "vd-four-flow-v1-0-fp16-deprecated.pth", "kl-f8.pth" and "optimus-vae.pth" from [HuggingFace](https://huggingface.co/shi-labs/versatile-diffusion/tree/main/pretrained_pth) and put them in `versatile_diffusion/pretrained/` folder
+- Extract CLIP-Text features of captions for any subject 'x' using `python scripts/cliptext_extract_features.py` -sub x
+- Extract CLIP-Vision features of stimuli images for any subject 'x' using `python scripts/clipvision_extract_features.py` -sub x
+- Train regression models from fMRI to CLIP-Text features and save test predictions using `python scripts/cliptext_regression.py` -sub x
+- Train regression models from fMRI to CLIP-Vision features and save test predictions using `python scripts/clipvision_regression.py` -sub x
+- Reconstruct images from predicted test features using `python scripts/versatilediffusion_reconstruct_images.py` -sub x. Depending on the number of GPU devices of your machine you may want to edit this last code script, for example changing all the `cude(1)` calls to `cuda(0)`.
   
 ### Contributions
 **Andrea**
