@@ -112,9 +112,9 @@ to
 - I made a scheme that represents in a simpliefied way the functioning of the model, the dimensions of the data, and the code scripts related to the various steps of the model;
 - I obtained the first images reconstructed with Versatile Diffusion, noting that the main problems were due to the scarcity of memory remained in my computer;
 - I tried to reduce the batch size from 30 to 3 and the number of VDVAE layers from 31 to 10 trying to see whether we could obtain good results with a smaller memory usage;
-- I tried to change the parameters of the image reconstruction in Versatile Diffusion to see whether we could achieve better results;
-- I tried to reconstruct the images with Versatile Diffusion without making use of the text features provided by CLIPText;
-- I tried to reconstruct the images with Versatile Diffusion without making use of the image features provided by CLIPVision and this produced the best results, suggesting that the main problems are the modifications we have made to the regression from fMRI to CLIPVision features.
+- I tried to reconstruct the images with Versatile Diffusion without making use of the text features provided by CLIPText to see whether we could achieve better results;
+- I tried to reconstruct the images with Versatile Diffusion without making use of the image features provided by CLIPVision and this produced the best results, suggesting that the main problems are the modifications we have made to the regression from fMRI to CLIPVision features;
+- I tried to change the parameter 'Diffusion Strength' of the image reconstruction in Versatile Diffusion without CLIPVision features and noticed that the obtained images remind the ground truth images more;
 
 **Drew**
 - Proposal writeup
