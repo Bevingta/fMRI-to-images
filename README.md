@@ -102,6 +102,8 @@ to
   #### Variant 1: Reduced Batch Size and Latent Features
   It is possible to reduce the batch size by changing the `bs`parameter that defaults to 30. Moreover, in order to avoid MemoryUsage Errors it can be important to reduce the `num_latent` parameter.
   #### Variant 2: Modify Diffusion Strength
+  It is possible to tune the default parameters, for example changing the `diff_str` parameter, that defaults to 0.75.
+  
 - 12th step. Extract CLIP-Vision features of stimuli images for any subject 'x' using `python scripts/clipvision_extract_features.py -sub x`. This step potentially has the same variants as the previous one.
 - 13th step. Train regression models from fMRI to CLIP-Text features and save test predictions using `python scripts/cliptext_regression.py -sub x`;
 - 14th step. Train regression models from fMRI to CLIP-Vision features and save test predictions using `python scripts/clipvision_regression.py -sub x`;
