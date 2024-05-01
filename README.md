@@ -1,12 +1,12 @@
 # Decrypting the Brain: Extracting Visual Information from fMRI Data
 ---
-### Description
+## Description
 - This study was realized as the final project for the course "CSCI 3397/PSYC 3317: Biomedical Image Analysis" at Boston College. Its scope is to reconstruct images starting from fmri data, reversing in this way the process that happens in the human brain as a response to visual stimuli. The main reference for this project was the [Brain-diffuser](https://github.com/ozcelikfu/brain-diffuser) model, that we aim to reproduce and possibly modify.
 ---
-### Instructions
+## Instructions
 The instructions are mainly reported from the Brain-diffuser project, rewritten including what we did, the complications found, and the relative solutions that consented us to proceed.
 
-**Obtaining and processing the data**
+### Obtaining and processing the data
 
 - First step. Copy the Brain-diffuser repository, in order to have the folders appropriately ordered;
 - Second step. Obtain access to NSD data. In order to do so, it is needed to:
@@ -44,7 +44,7 @@ to
   stim = f_stim['imgBrick'][:,::2,::2]
   ```
 
-**VDVAE: Obtaining and implementing the model**
+### VDVAE: Obtaining and implementing the model
         
 - Sixth step. Download pretrained VDVAE model files from the following links:  
   [imagenet64-iter-1600000-log.jsonl](https://openaipublic.blob.core.windows.net/very-deep-vaes-assets/vdvae-assets-2/imagenet64-iter-1600000-log.jsonl)   
@@ -54,7 +54,10 @@ to
   Place the files in the `vdvae/model/` folder.
 
 - Seventh step. Extract VDVAE latent features of stimuli images for any subject 'x' using `python scripts/vdvae_extract_features.py -sub x`. In order to make this work, the presence of an NVIDIA GPU that is CUDA-compatible is necessary. Moreover, one needs to install pytorch with CUDA support, referring to the instructions in [Pytorch Website](https://pytorch.org/get-started/locally/).
-- Eighth step. Train regression models from fMRI to VDVAE latent features and save test predictions using `python scripts/vdvae_regression.py -sub x`. Once again, this may cause errors related to the large dimensions of the data. It is possible to overcome this problem replacing the following line of code  
+- Eighth step. Train regression models from fMRI to VDVAE latent features and save test predictions using `python scripts/vdvae_regression.py -sub x`. Once again, this may cause errors related to the large dimensions of the data.
+
+  #### Variant 1: Naive Remotion of Features
+  It is possible to overcome this problem replacing the following line of code  
   
   ```python
   reg.fit(reduced_train_fmri, train_latents)
@@ -86,16 +89,19 @@ to
     ```
 
     This code is used to iteratively select a number (in this case 10500) of features at random, remove them from the training data, and fit the Ridge regression on the so obtained reduced data, obtaining the $R^2$ score. At the end of the iterations, the group of features whose removal lead to the best score is permanently removed, and the model is fitted on the remaining features. This is useful to solve the problems with memory allocation, at the cost of a reduced accuracy.
+
+  #### Variant 2: SGD
+  
 - Ninth step. Reconstruct images from predicted test features using `python scripts/vdvae_reconstruct_images.py -sub x`.
 
-**Versatile Diffusion: Obtaining and implementing the model**
+### Versatile Diffusion: Obtaining and implementing the model
 
-- Download pretrained Versatile Diffusion model "vd-four-flow-v1-0-fp16-deprecated.pth", "kl-f8.pth" and "optimus-vae.pth" from [HuggingFace](https://huggingface.co/shi-labs/versatile-diffusion/tree/main/pretrained_pth) and put them in `versatile_diffusion/pretrained/` folder
-- Extract CLIP-Text features of captions for any subject 'x' using `python scripts/cliptext_extract_features.py -sub x`
-- Extract CLIP-Vision features of stimuli images for any subject 'x' using `python scripts/clipvision_extract_features.py -sub x`
-- Train regression models from fMRI to CLIP-Text features and save test predictions using `python scripts/cliptext_regression.py -sub x`
-- Train regression models from fMRI to CLIP-Vision features and save test predictions using `python scripts/clipvision_regression.py -sub x`
-- Reconstruct images from predicted test features using `python scripts/versatilediffusion_reconstruct_images.py -sub x`. Depending on the number of GPU devices of your machine you may want to edit this last code script, for example changing all the `cude(1)` calls to `cuda(0)`.
+- Tenth step. Download pretrained Versatile Diffusion model "vd-four-flow-v1-0-fp16-deprecated.pth", "kl-f8.pth" and "optimus-vae.pth" from [HuggingFace](https://huggingface.co/shi-labs/versatile-diffusion/tree/main/pretrained_pth) and put them in `versatile_diffusion/pretrained/` folder
+- Eleventh step. Extract CLIP-Text features of captions for any subject 'x' using `python scripts/cliptext_extract_features.py -sub x`
+- Twelfth step. Extract CLIP-Vision features of stimuli images for any subject 'x' using `python scripts/clipvision_extract_features.py -sub x`
+- Thirteenth step. Train regression models from fMRI to CLIP-Text features and save test predictions using `python scripts/cliptext_regression.py -sub x`
+- Fourteenth step. Train regression models from fMRI to CLIP-Vision features and save test predictions using `python scripts/clipvision_regression.py -sub x`
+- 15^th step. Reconstruct images from predicted test features using `python scripts/versatilediffusion_reconstruct_images.py -sub x`. Depending on the number of GPU devices of your machine you may want to edit this last code script, for example changing all the `cude(1)` calls to `cuda(0)`.
   
 ### Contributions
 **Andrea**
