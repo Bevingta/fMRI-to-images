@@ -130,6 +130,8 @@ to
 - I tried to reconstruct the images with Versatile Diffusion without making use of the text features provided by CLIPText to see whether we could achieve better results;
 - I tried to reconstruct the images with Versatile Diffusion without making use of the image features provided by CLIPVision and this produced the best results, suggesting that the main problems are the modifications we have made to the regression from fMRI to CLIPVision features;
 - I tried to change the parameter 'Diffusion Strength' of the image reconstruction in Versatile Diffusion without CLIPVision features and noticed that the obtained images remind the ground truth images more;
+- I tried to perform the ROI evaluation;
+- Iwrote the MOLD paragraphs of the report.
 
 **Drew**
 - Proposal writeup
