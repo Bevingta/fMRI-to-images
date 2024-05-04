@@ -125,13 +125,14 @@ to
   Then, in order to extract the features in the way suggested by the authors and upload the corresponding files in the shared Google Drive, I found it was necessary to install pytorch with CUDA support. Subsequently, I found a solution to the errors arising while training the regression model. I needed to reduce the number of features in order for the code to run, and I tried to achieve a trade off between a logic choice of features and efficiency, as it can be seen from the block of code described in the eighth step above. I obtained the reconstructed images.
 - I wrote the "Description", "References" and "Instructions" sections of the ReadMe;
 - I made a scheme that represents in a simpliefied way the functioning of the model, the dimensions of the data, and the code scripts related to the various steps of the model;
+- I tried two solutions in order to enable my computer to store CLIPVision features. The first consisted in reducing the size of the input, the second in reducing the number of embeddings produced. The second attempt seemed to lead to better results, but it still resulted in a loss of information and quality of results.
 - I obtained the first images reconstructed with Versatile Diffusion, noting that the main problems were due to the scarcity of memory remained in my computer;
-- I tried to reduce the batch size from 30 to 3 and the number of VDVAE layers from 31 to 10 trying to see whether we could obtain good results with a smaller memory usage;
+- I tried to reduce the batch size from 30 to 3 and the number of VDVAE layers from 31 to 10 trying to see whether we could obtain good results with a smaller memory usage. This strategy was proved successful in the subsequent results;
 - I tried to reconstruct the images with Versatile Diffusion without making use of the text features provided by CLIPText to see whether we could achieve better results;
 - I tried to reconstruct the images with Versatile Diffusion without making use of the image features provided by CLIPVision and this produced the best results, suggesting that the main problems are the modifications we have made to the regression from fMRI to CLIPVision features;
 - I tried to change the parameter 'Diffusion Strength' of the image reconstruction in Versatile Diffusion without CLIPVision features and noticed that the obtained images remind the ground truth images more;
 - I tried to perform the ROI evaluation;
-- Iwrote the MOLD paragraphs of the report.
+- I wrote the MOLD paragraphs of the report.
 
 **Drew**
 - Proposal writeup
