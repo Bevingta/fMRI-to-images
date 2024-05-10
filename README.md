@@ -243,7 +243,22 @@ stim = f_stim['imgBrick'][:,::2,::2]
 - I tried to change the parameter 'Diffusion Strength' of the image reconstruction in Versatile Diffusion without CLIPVision features and noticed that the obtained images remind the ground truth images more;
 - I tried to perform the ROI evaluation;
 - I wrote the MOLD paragraphs of the report;
-- I was responsible for the following files: 
+- I was responsible for the following files:
+  
+  `cliptext_extract_features_reducedbs.py
+  cliptext_regression_reducedbs.py
+  clipvision_extract_features_reducedembeds.py
+  clipvision_regression_reducedbs.py
+  roi_generate_features_reducedbs.py
+  roi_vdvae_reconstruct_reducedbs.py
+  roi_versatilediffusion_reconstruct_diffusionstrength055.py
+  vdvae_extract_features_reducedbs.py
+  vdvae_reconstruct_images_reducedbs.py
+  vdvae_regression_reducedbs.py
+  versatilediffusion_reconstruct_images_diffusionstrength055.py
+  versatilediffusion_reconstruct_images_onlytxt.py
+  versatilediffusion_reconstruct_images_onlyvision.py
+  versatilediffusion_reconstruct_images_reducedbs.py`
 
 **Drew**
 
