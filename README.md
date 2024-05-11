@@ -276,16 +276,16 @@ stim = f_stim['imgBrick'][:,::2,::2]
 - Wrote the section of the readme on the SGD implementation for VDVAE
 - Went through all of the helper files and edited teh CUDA usage to check for the users operating system
 - I was responsible for changes in the following files
-  'aws-reader.py'
-  'data-reader.py'
-  'credentials.json'
-  drive_reader.py'
-  'pepare_nsddata_drive.py'
-  'clipvision_regression.py'
-  'cliptext_regression.py'
-  'vdvae_regression2.py'
-  'sync.py'
-  'model_utils.py'
+  `aws-reader.py`
+  `data-reader.py`
+  `credentials.json`
+  `drive_reader.py`
+  `pepare_nsddata_drive.py`
+  `clipvision_regression.py`
+  `cliptext_regression.py`
+  `vdvae_regression2.py`
+  `sync.py`
+  `model_utils.py`
 
 **Camille**
 
