@@ -277,7 +277,11 @@ stim = f_stim['imgBrick'][:,::2,::2]
 
 **Camille**
 
-- CLIP research
+- Reviewed and summarized journal articles to help the team select the most reproducible and accessible model.
+- Contributed biology background to enhance the group's understanding of the motivations behind and potential future applications of this research.
+- Outlined project pipeline (detailing inputs and outputs) and annotated the code extensively to clarify the function of each block and line to search for areas that could be cut down
+- Managed the synthesis of work for first presentation & presented and background/motivation + 1st step in pipeline
+- Authored the introduction and related work sections of the final report.
 
 ---
 
